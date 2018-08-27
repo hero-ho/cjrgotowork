@@ -103,12 +103,10 @@ ol, ul {
     list-style: none;
 }
 textarea{
-	border:none;
 	outline: none;
 	resize: none;
 }
 input[type=text]{
-	border:none;
 	outline: none;
 }
 button, html input[type=button], input[type=submit] {

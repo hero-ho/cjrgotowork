@@ -72,7 +72,7 @@ export default {
   methods: {
     handleCommand (command) {
       if (command === 'a') {
-        this.$router.push({name: 'selfDetail'})
+        this.$router.push({name: 'createResume'})
       }
     }
   }
@@ -100,9 +100,9 @@ header{
     .logo{
       width: 190px;
       height: 50px;
-      background-color: blue;
       float: left;
-      background-image:url('../../../src/assets/images/logo.png');
+      background-color: blue;
+      background: url('../../../src/assets/images/logo1.png') no-repeat 0 7px;
       a{
         cursor: default;
         height: 50px;
