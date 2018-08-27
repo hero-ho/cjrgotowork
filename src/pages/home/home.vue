@@ -2,6 +2,7 @@
   <div>
     <holder></holder>
     <Masthead />
+    <JobList />
     <foot></foot>
   </div>
 </template>
@@ -10,7 +11,7 @@ import Vue from 'vue'
 import holder from '@/components/header/header'
 import foot from '@/components/footer/footer'
 import Masthead from '@/components/masthead/Masthead'
-
+import JobList from '@/components/jobList/JobList'
 import { Button } from 'element-ui'
 Vue.use(Button)
 
@@ -19,7 +20,8 @@ export default {
   components: {
     foot,
     holder,
-    Masthead
+    Masthead,
+    JobList
   },
   data() {
     return {
