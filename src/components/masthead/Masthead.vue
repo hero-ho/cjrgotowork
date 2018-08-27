@@ -88,10 +88,11 @@ export default {
   outline: none;
   border: none;
   color: #999;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
   &[class-name="keywords"] {
     border-left: 2px solid #303a40;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-radius: 0;
   }
 }
 .banner {
@@ -102,7 +103,6 @@ export default {
   justify-content: center;
   align-items: flex-end;
   form {
-    background-color: #fff;
     width: 670px;
     margin-bottom: 20px;
     border-radius: 5px;
