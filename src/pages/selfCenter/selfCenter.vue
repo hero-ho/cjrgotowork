@@ -16,7 +16,7 @@ export default {
   },
   data () {
     return {
-      msg: '当前是个人中心页面'
+      msg: '当前是个人中心页面222'
     }
   }
 }
