@@ -2,7 +2,7 @@
   <div class="banner">
     <form action="get">
       <el-row>
-        <el-col span="4">
+        <el-col :span="4">
           <el-select v-model="value" placeholder="找工作">
             <el-option
               v-for="item in options"
@@ -12,7 +12,7 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col span="14">
+        <el-col :span="14">
           <el-input
             class-name="keywords"
             placeholder="输入关键字搜索"
@@ -20,7 +20,7 @@
             clearable>
           </el-input>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
           <el-button native-type='submit'>搜索</el-button>
         </el-col>
       </el-row>
