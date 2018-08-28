@@ -13,7 +13,7 @@
               @change="handleChange"
               >
             </el-cascader>
-            <el-select v-model="currentDistrict" filterable placeholder="工作地区">
+            <el-select :disabled=!districts v-model="currentDistrict" filterable placeholder="工作地区">
               <el-option
                 v-for="item in districts"
                 :key="item.id"
@@ -27,20 +27,49 @@
       <span data-sort="date" class="active">发布时间</span>
       <span data-sort="popularity">热度</span>
     </div>
+    <div class="job-items">
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+      <JobItem />
+    </div>
+    <div class="pagination">
+      <el-pagination
+        :page-size="20"
+        :pager-count="5"
+        layout="prev, pager, next"
+        :total="1000">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
-import { Row, Col, Select, Option, Cascader } from 'element-ui'
+import JobItem from '../jobItem/JobItem'
+import { Row, Col, Select, Option, Cascader, Pagination } from 'element-ui'
 import Vue from 'vue'
 import { province } from './provinces'
 import { cities } from './cities'
 import { districts } from './districts'
 Vue.use(Cascader)
+Vue.use(Pagination)
 Vue.use([Row, Col, Select, Option])
 
 export default {
   name: 'JobList',
+  components: {
+    JobItem
+  },
   created() {
     this.province = province.map(e => {
       return {
@@ -61,8 +90,9 @@ export default {
   },
   data() {
     return {
+      pagerCount: 6,
       province,
-      districts,
+      districts: '',
       cities,
       currentDistrict: '',
       cityCode: '',
@@ -71,34 +101,43 @@ export default {
   },
   methods: {
     toggleActive(e) {
-      if (e.target.nodeName === 'SPAN') {
+      if (
+        e.target.nodeName === 'SPAN' &&
+        !Array.from(e.target.classList).includes('active')
+      ) {
         Array.from(e.currentTarget.querySelectorAll('span')).forEach(e => {
           e.classList.toggle('active')
         })
-        this.sortBy = e.target.dataset.sort;
+        this.sortBy = e.target.dataset.sort
         console.dir(this.sortBy)
       }
     },
     handleChange(value) {
       this.cityCode = value[1]
-      console.log(this.cityCode)
       this.districts = districts.filter(e => {
         return e.cityCode === this.cityCode
       })
-      console.log(this.districts)
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+.job-items {
+  display: flex;
+  flex-wrap: wrap;
+}
 .jobList {
+  .pagination{
+    margin: 50px auto 60px;
+    text-align: center;
+  }
   width: 1200px;
   margin: 0 auto;
 }
 .sort {
+  margin-bottom: 10px;
   border-bottom: 6px solid #ff9500;
-  margin-bottom: 20px;
   span {
     display: inline-block;
     height: 44px;
@@ -108,6 +147,9 @@ export default {
     line-height: 44px;
     text-align: center;
     cursor: pointer;
+  }
+  span:hover {
+    color: #ff9500;
   }
   span.active {
     background-color: #ff9500;
@@ -162,6 +204,7 @@ export default {
     .description {
       color: #333;
       font-size: 14px;
+      line-height: 2;
     }
   }
 }
