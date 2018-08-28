@@ -7,6 +7,14 @@
           </div>
           <div class="city">
             <div class="icon"></div>
+            <el-select v-model="currentProvince" filterable placeholder="请选择">
+              <el-option
+                v-for="item in province"
+                :key="item.id"
+                :label="item.name"
+                :value="item.name">
+              </el-option>
+            </el-select>
           </div>
     </div>
     
@@ -14,13 +22,22 @@
 </template>
 
 <script>
-import { Row, Col } from 'element-ui'
+import { Row, Col, Select, Option } from 'element-ui'
 import Vue from 'vue'
-
-Vue.use([Row, Col])
+import {province} from './provinces'
+Vue.use([Row, Col, Select, Option])
 
 export default {
-  name: 'JobList'
+  name: 'JobList',
+  created() {
+    console.log(province)
+  },
+  data() {
+    return {
+      province,
+      currentProvince: '北京市'
+    }
+  }
 }
 </script>
 
@@ -30,6 +47,16 @@ export default {
   width: 1200px;
   margin: 0 auto;
   position: relative;
+  .city {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    .icon {
+      height: 28px;
+      width: 21px;
+      background-image: url('../../assets/images/sprite.png');
+    }
+  }
   .title-wrapper {
     padding: 60px 0 37px 0;
     text-align: center;
