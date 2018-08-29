@@ -1,18 +1,18 @@
 <template>
   <div class="job-item">
-    <div class="title">资深高级动画设计师</div>
+    <div class="title">{{detail.title}}</div>
     <div class="info">
       <div class="detail">
-        <span class="city">北京</span>
-        <span class="experience">经验不限</span>
-        <span class="perks">包吃包住</span>
+        <span class="city">{{detail.jobCityName}}</span>
+        <span class="experience">{{detail.demandExperience}}</span>
+        <span class="perks" v-show="detail.welfare">{{detail.welfare}}</span>
       </div>
-      <div class="company-name">北京小年糕互联网技术有限公司</div>
+      <div class="company-name">{{detail.jobRecruiterName}}</div>
     </div>
     <div class="lower-detail">
-      <span class="salary">4k-6k</span>
+      <span class="salary">{{detail.money}}</span>
       <span class="post-date">
-        发布于2018-08-28
+        发布于{{convertToDate(detail.create_time)}}
       </span>
     </div>
   </div>
@@ -20,14 +20,26 @@
 
 <script>
 export default {
-  name: 'JobItem'
+  name: 'JobItem',
+  props: {
+    detail: {
+      type: Object
+    }
+  },
+  methods: {
+    convertToDate(ms) {
+      let date = new Date(ms)
+      return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    }
+  }
 }
 </script>
 
 <style lang="less" scoped>
 .job-item {
   box-sizing: border-box;
-  .lower-detail{
+  .lower-detail {
+    align-items: baseline;
     position: absolute;
     bottom: 15px;
     left: 35px;
@@ -36,7 +48,7 @@ export default {
     justify-content: space-between;
     font-size: 16px;
     color: #333;
-    .post-date{
+    .post-date {
       font-size: 12px;
       color: #aaaaaa;
     }
@@ -57,15 +69,15 @@ export default {
   }
   .info {
     padding: 0 20px 0 20px;
-    .detail{
+    .detail {
       padding-bottom: 10px;
       font-size: 14px;
       color: #aaaaaa;
-      &>span{
+      & > span {
         padding: 0 10px;
         border-left: 1px solid #aaaaaa;
       }
-      &>span:first-child{
+      & > span:first-child {
         padding-left: 0;
         border-left: 1px solid transparent;
       }
@@ -75,6 +87,5 @@ export default {
     }
   }
 }
-
 </style>
 

@@ -28,33 +28,22 @@
       <span data-sort="popularity">热度</span>
     </div>
     <div class="job-items">
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
+      <JobItem v-for="job in jobList.list" :key=job.id :detail="job"></JobItem>
     </div>
     <div class="pagination">
       <el-pagination
-        :page-size="20"
+        background
+        :page-size="15"
         :pager-count="5"
         layout="prev, pager, next"
-        :total="1000">
+        :total=jobList.total>
       </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import {getJobList} from '../../axios/index'
 import JobItem from '../jobItem/JobItem'
 import { Row, Col, Select, Option, Cascader, Pagination } from 'element-ui'
 import Vue from 'vue'
@@ -71,6 +60,11 @@ export default {
     JobItem
   },
   created() {
+    getJobList().then(res => {
+      this.jobList = res.data
+      console.log(this.jobList)
+    })
+    
     this.province = province.map(e => {
       return {
         value: e.code,
@@ -90,6 +84,7 @@ export default {
   },
   data() {
     return {
+      jobList: '',
       pagerCount: 6,
       province,
       districts: '',
