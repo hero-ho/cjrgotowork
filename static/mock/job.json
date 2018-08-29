@@ -1,0 +1,26 @@
+{
+  "status": 0,
+  "job": {
+    "id": 1,
+    "title": "资深高级动画设计师",
+    "money" : "2000-5000",
+    "createTime" : 123548556,
+    "welfare" : "五险一金",
+    "jobLocation" : "中关村",
+    "jobRecruiterName" : "百度",
+    "demandExperience" : "无",
+    "demandEducation"  : "无",
+    "demandGender" : 1,
+    "demandAge" : "18-30",
+    "peopleNum" : "2-3",
+    "jobContent" : ["协助主管完成指定任务", "协助主管完成指定任务", "协助主管完成指定任务"],
+    "jobKindName" : "互联网",
+    "jobCityName" : "北京",
+    "filed" : "互联网",
+    "scale" : "民企",
+    "nature" : "100-5000",
+    "introduction" : "这是一家互联网公司",
+    "logoURI" : "www.baidu.com",
+    "location" : "北京"
+  }
+}

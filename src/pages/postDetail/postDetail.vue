@@ -5,9 +5,9 @@
       <div class="job-detail-header">
         <div class="job-name-detail">
           <div class="job-name-left">
-            <div class="release-time">发布于 2018-8-7 13:22</div>
-            <div class="job-name"><span class="name">车间勤杂工</span><label class="salary">2k-3k</label></div>
-            <div class="company-name">温州雪凝引物有限公司</div>
+            <div class="release-time">发布于 {{ job.createTime }}</div>
+            <div class="job-name"><span class="name">{{ job.title }}</span><label class="salary">{{ job.money }}</label></div>
+            <div class="company-name">{{ job.jobRecruiterName }}</div>
           </div>
           <div class="job-name-right">
             <el-button class="resume">投递简历</el-button>
@@ -20,9 +20,38 @@
       </div>
       <div class="job-detail-body">
         <div class="detail-left-wrap">
-          <div class="detail">
-            <div class="detail-info">
-              <div class=""></div>
+          <div class="com-detail">
+            <div class="detail-top">
+              <div class="detail-wrap">
+                <label class="name">福利</label>
+                <div class="detail"><el-tag>{{ job.welfare }}</el-tag></div>
+              </div>
+              <div class="detail-wrap">
+                <label class="name">要求</label>
+                <div class="detail">{{ job.demandEducation }} | {{ job.demandExperience }} | 男性 | {{ job.demandAge }}岁</div>
+              </div>
+              <div class="detail-wrap">
+                <label class="name">地点</label>
+                <div class="detail">{{ job.jobCityName }} （{{ job.location }}）</div>
+              </div>
+              <div class="detail-wrap">
+                <label class="name">人数</label>
+                <div class="detail">{{ job.peopleNum }}人</div>
+              </div>
+            </div>
+            <div class="detail-bottom">
+              <el-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tab-pane label="职位描述" name="first">
+                  <ul class="job-intro">
+                    <li v-for="(intro, index) in job.jobContent">{{ index+1 + "." +  intro }}</li>
+                  </ul>
+                </el-tab-pane>
+                <el-tab-pane label="公司简介" name="second">
+                  <ul class="job-intro">
+                    <li>{{ job.introduction }}</li>
+                  </ul>
+                </el-tab-pane>
+              </el-tabs>
             </div>
           </div>
           <div class="other-job">123</div>
@@ -37,11 +66,15 @@
 </template>
 <script>
 import Vue from 'vue'
+import axios from 'axios'
 import holder from '@/components/header/header'
 import foot from '@/components/footer/footer'
-import { Button } from 'element-ui'
+import { Button, Tag, Tabs, TabPane } from 'element-ui'
 
 Vue.use(Button)
+Vue.use(Tag)
+Vue.use(TabPane)
+Vue.use(Tabs)
 
 export default {
   name: 'postDetail',
@@ -51,7 +84,20 @@ export default {
   },
   data () {
     return {
-      msg: '当前是职位详情页面'
+      msg: '当前是职位详情页面',
+      activeName: 'first',
+      job: {}
+    }
+  },
+  created () {
+    axios.get('/static/mock/job.json').then((res) => {
+      this.job = res.data.job;
+      this.handleClick()
+    })
+  },
+  methods: {
+    handleClick (tab, event) {
+      console.log(tab)
     }
   }
 }
@@ -128,8 +174,45 @@ export default {
       .detail-left-wrap {
         width: 800px;
         float: left;
-        .detail {
+        .com-detail {
+          min-height: 640px;
           background-color: white;
+          padding: 10px;
+          .detail-top {
+            .detail-wrap {
+              margin-bottom: 17px;
+              font-size: 0;
+              .name {
+                margin-right: 10px;
+                font-size: 14px;
+                color: #333333;
+              }
+              .detail {
+                display: inline-block;
+                font-size: 14px;
+                .el-tag {
+                  margin-right: 10px;
+                  padding: 0 5px;
+                  height: 22px;
+                  line-height: 22px;
+                  border-radius: 8px;
+                  color: #333333;
+                  border-color: #f46d43;
+                  background-color: white
+                }
+              }
+            }
+          }
+          .detail-bottom {
+            .job-intro {
+              li {
+                margin-bottom: 10px;
+                &:last-child {
+                  margin-bottom: 0
+                }
+              }
+            }
+          }
         }
         .other-job {
           margin-top: 10px;
@@ -144,6 +227,31 @@ export default {
           background-color: white;
         }
       }
+    }
+  }
+</style>
+<!-- element-ui 重写 -->
+<style lang="less">
+  .detail-bottom {
+    .el-tabs__nav-wrap::after {
+      background-color: #ec4c48;
+      height: 1px;
+    }
+    .el-tabs__item {
+      &:hover {
+        color: #333333
+      }
+    }
+    .el-tabs__item.is-active {
+      color: #333333;
+    }
+    .el-tabs__active-bar {
+      background-color: #ec4c48
+    }
+    .el-tabs__content {
+      padding: 0 20px;
+      color: #333333;
+      font-size: 14px
     }
   }
 </style>

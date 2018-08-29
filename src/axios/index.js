@@ -15,3 +15,6 @@ export const checkUser = (param) => {
 使用方法： checkUser( { 参数 } ).then(回调函数)
 
  */
+export const getCompony = (param) => {
+  return axios.post('/user/login.do', param).then(res => res.data)
+};
