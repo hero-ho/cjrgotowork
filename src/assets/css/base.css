@@ -106,9 +106,7 @@ textarea{
 	outline: none;
 	resize: none;
 }
-input[type=text]{
-	outline: none;
-}
+
 button, html input[type=button], input[type=submit] {
 	outline: none;
     -webkit-appearance: button;
@@ -117,7 +115,7 @@ button, html input[type=button], input[type=submit] {
 
 button[disabled], html input[disabled] {
     cursor: default
-}
+} 
 
 a,ins,s,u,del{
     text-decoration: none;
