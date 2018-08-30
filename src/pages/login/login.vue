@@ -88,7 +88,7 @@ export default {
       margin: 0 auto;
       background-color: #fff;
       text-align: center;
-      border-radius:0 0 6px 6px; 
+      border-radius:0 0 6px 6px;
       position: relative;
       h1{
         text-align: center;
