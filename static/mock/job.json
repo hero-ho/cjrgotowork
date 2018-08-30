@@ -22,5 +22,83 @@
     "introduction" : "这是一家互联网公司",
     "logoURI" : "www.baidu.com",
     "location" : "北京"
+  },
+  "company": {
+    "id": 1,
+    "jobRecruiterName" : "百度",
+    "jobKindName" : "互联网",
+    "jobCityName" : "北京",
+    "field" : "互联网",
+    "scale" : "民企",
+    "nature" : "100-5000",
+    "introduction" : "这是一家互联网公司",
+    "logoURI" : "www.baidu.com",
+    "location" : "北京"
+  },
+  "jobList": {
+    "pageNum": 1,
+    "pageSize": 4,
+    "list": [
+      {
+        "id": 1,
+        "title": "资深高级动画设计师",
+        "money" : "2000-5000",
+        "create_time" : 123548556,
+        "welfare" : "五险一金",
+        "jobCityName" : "北京",
+        "jobRecruiterName" : "百度",
+        "demandExperience" : "无"
+      },
+      {
+        "id": 2,
+        "title": "资深高级动画设计师",
+        "money" : "2000-5000",
+        "create_time" : 123548556,
+        "welfare" : "五险一金",
+        "jobCityName" : "北京",
+        "jobRecruiterName" : "百度",
+        "demandExperience" : "无"
+      },
+      {
+        "id": 3,
+        "title": "资深高级动画设计师",
+        "money" : "2000-5000",
+        "create_time" : 123548556,
+        "welfare" : "五险一金",
+        "jobCityName" : "北京",
+        "jobRecruiterName" : "百度",
+        "demandExperience" : "无"
+      },
+      {
+        "id": 4,
+        "title": "资深高级动画设计师",
+        "money" : "2000-5000",
+        "create_time" : 123548556,
+        "welfare" : "五险一金",
+        "jobCityName" : "北京",
+        "jobRecruiterName" : "百度",
+        "demandExperience" : "无"
+      },
+      {
+        "id": 5,
+        "title": "资深高级动画设计师",
+        "money" : "2000-5000",
+        "create_time" : 123548556,
+        "welfare" : "五险一金",
+        "jobCityName" : "北京",
+        "jobRecruiterName" : "百度",
+        "demandExperience" : "无"
+      },
+      {
+        "id": 6,
+        "title": "资深高级动画设计师",
+        "money" : "2000-5000",
+        "create_time" : 123548556,
+        "welfare" : "五险一金",
+        "jobCityName" : "北京",
+        "jobRecruiterName" : "百度",
+        "demandExperience" : "无"
+      }
+    ]
   }
 }

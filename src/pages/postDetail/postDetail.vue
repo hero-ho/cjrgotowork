@@ -40,7 +40,7 @@
               </div>
             </div>
             <div class="detail-bottom">
-              <el-tabs v-model="activeName" @tab-click="handleClick">
+              <el-tabs v-model="activeName">
                 <el-tab-pane label="职位描述" name="first">
                   <ul class="job-intro">
                     <li v-for="(intro, index) in job.jobContent">{{ index+1 + "." +  intro }}</li>
@@ -54,10 +54,51 @@
               </el-tabs>
             </div>
           </div>
-          <div class="other-job">123</div>
+          <div class="other-job">
+            <div class="avatar">
+              <img width="120px" height="120px" src="">
+            </div>
+            <div class="content">
+              <div class="name">{{ company.jobRecruiterName }}</div>
+              <div class="intro">
+                <div class="col-30">领域：{{ company.field }}</div>
+                <div class="col-70">性质：{{ company.scale }}</div>
+                <div class="col-30">规格：{{ company.nature }} 人</div>
+                <div class="col-70">地点：{{ company.location}}</div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="detail-right-wrap">
-          <div class="hot-jobs">123</div>
+          <div class="hot-jobs">
+            <div class="title">急招职位</div>
+            <div class="job-list">
+              <ul>
+                <li v-for="job in cjobList">
+                  <div class="job-content">
+                    <div class="job-title">{{ job.title }}</div>
+                    <div class="job-detail">
+                      <div class="job-require"></div>
+                      <div class="company-name"></div>
+                    </div>
+                    <div class=""></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <el-pagination
+              background
+              layout="prev, next"
+              :page-size="4"
+              :total="jobList.length"
+              prev-text="上一页"
+              next-text="下一页"
+              @current-change="handleCurrentChange"
+            >
+            </el-pagination>
+          </div>
         </div>
       </div>
     </div>
@@ -69,12 +110,13 @@ import Vue from 'vue'
 import axios from 'axios'
 import holder from '@/components/header/header'
 import foot from '@/components/footer/footer'
-import { Button, Tag, Tabs, TabPane } from 'element-ui'
+import { Button, Tag, Tabs, TabPane, Pagination } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Tag)
 Vue.use(TabPane)
 Vue.use(Tabs)
+Vue.use(Pagination)
 
 export default {
   name: 'postDetail',
@@ -86,18 +128,31 @@ export default {
     return {
       msg: '当前是职位详情页面',
       activeName: 'first',
-      job: {}
+      job: {},
+      company: {},
+      jobList: [],
+      pageNum: 1,
+      pageSize: 4
+    }
+  },
+  computed: {
+    cjobList () {
+      return this.jobList.slice(4 * (this.pageNum - 1), this.pageNum * this.pageSize)
     }
   },
   created () {
     axios.get('/static/mock/job.json').then((res) => {
       this.job = res.data.job;
-      this.handleClick()
+      this.jobList = res.data.jobList.list;
+      this.company = res.data.company;
+      this.pageNum = res.data.jobList.pageNum;
+      this.pageSize = res.data.jobList.pageSize;
     })
   },
   methods: {
-    handleClick (tab, event) {
-      console.log(tab)
+    // 获取当前页数跳转到指定页
+    handleCurrentChange (val) {
+      this.pageNum = val
     }
   }
 }
@@ -176,6 +231,7 @@ export default {
         float: left;
         .com-detail {
           min-height: 640px;
+          margin-bottom:10px;
           background-color: white;
           padding: 10px;
           .detail-top {
@@ -215,8 +271,40 @@ export default {
           }
         }
         .other-job {
-          margin-top: 10px;
+          margin-bottom: 60px;
+          padding: 16px 30px;
           background-color: white;
+          overflow: hidden;
+          .avatar {
+            float: left;
+          }
+          .content {
+            padding-left: 150px;
+            .name {
+              padding-top: 4px;
+              padding-bottom: 17px;
+              font-size: 18px;
+              font-weight: 600;
+              color: #333333
+            }
+            .intro {
+              overflow: hidden;
+              div {
+                float: left;
+                padding-top: 24px;
+                font-size: 16px;
+                &:first-child, &:nth-child(2) {
+                  padding-top: 0
+                }
+              }
+              .col-30 {
+                min-width: 30%
+              }
+              .col-70 {
+                width: 50%
+              }
+            }
+          }
         }
       }
       .detail-right-wrap {
