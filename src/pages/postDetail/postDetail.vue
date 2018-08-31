@@ -56,7 +56,7 @@
           </div>
           <div class="other-job">
             <div class="avatar">
-              <img width="120px" height="120px" src="">
+              <img width="120px" height="120px" src="@/assets/images/hero.png">
             </div>
             <div class="content">
               <div class="name">{{ company.jobRecruiterName }}</div>
@@ -75,19 +75,12 @@
             <div class="job-list">
               <ul>
                 <li v-for="job in cjobList">
-                  <div class="job-content">
-                    <div class="job-title">{{ job.title }}</div>
-                    <div class="job-detail">
-                      <div class="job-require"></div>
-                      <div class="company-name"></div>
-                    </div>
-                    <div class=""></div>
-                  </div>
+                  <job-item :detail="job"></job-item>
                 </li>
               </ul>
             </div>
           </div>
-          <div>
+          <div class="pagination">
             <el-pagination
               background
               layout="prev, next"
@@ -95,8 +88,7 @@
               :total="jobList.length"
               prev-text="上一页"
               next-text="下一页"
-              @current-change="handleCurrentChange"
-            >
+              @current-change="handleCurrentChange">
             </el-pagination>
           </div>
         </div>
@@ -110,6 +102,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import holder from '@/components/header/header'
 import foot from '@/components/footer/footer'
+import JobItem from '@/components/jobItem/JobItem'
 import { Button, Tag, Tabs, TabPane, Pagination } from 'element-ui'
 
 Vue.use(Button)
@@ -122,7 +115,8 @@ export default {
   name: 'postDetail',
   components: {
     holder,
-    foot
+    foot,
+    JobItem
   },
   data () {
     return {
@@ -313,12 +307,24 @@ export default {
         padding-left: 20px;
         .hot-jobs {
           background-color: white;
+          padding-top: 10px;
+          padding-bottom: 1px;
+          .title {
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            padding-bottom: 10px
+          }
+        }
+        .pagination {
+          padding-top: 20px;
+          text-align: center;
         }
       }
     }
   }
 </style>
-<!-- element-ui 重写 -->
+<!-- element-ui 重写  -->
 <style lang="less">
   .detail-bottom {
     .el-tabs__nav-wrap::after {
@@ -340,6 +346,26 @@ export default {
       padding: 0 20px;
       color: #333333;
       font-size: 14px
+    }
+
+  }
+  .pagination {
+    .el-pagination {
+      .btn-next, .btn-prev {
+        width:70px;
+        line-height: 30px;
+        background: white;
+      }
+      .btn-next {
+        margin-left: 100px
+      }
+    }
+  }
+  // jobItem 重写
+  .job-item {
+    width: 360px !important;
+    .lower-detail {
+      width: 305px !important
     }
   }
 </style>
