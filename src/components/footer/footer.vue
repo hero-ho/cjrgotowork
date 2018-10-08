@@ -4,11 +4,12 @@
         <div>
           <h3 class="title">有情链接</h3>
           <ul>
-            <li><a href="/" target="_blank">中国残疾人联合协会</a></li>
-            <li><a href="/" target="_blank">中国残疾人互助委员会</a></li>
-            <li><a href="/" target="_blank">中国残疾人就业招聘网</a></li>
-            <li><a href="/" target="_blank">棒棒团公益平台</a></li>
-            <li><a href="/" target="_blank">棒棒团残疾人互助论坛</a></li>
+            <li><a href="http://www.cdpf.org.cn/" target="_blank">中国残疾人联合会</a></li>
+            <li><a href="http://www.cjrwz.com/" target="_blank">中国残疾人网址大全</a></li>
+            <li>
+              <router-link to="/community">棒棒团残友互助社区</router-link>
+            </li>
+            <li><a href="javascript:;" target="_blank" class="close">棒棒团公益平台</a></li>
           </ul>
         </div>
         <div class="about">
@@ -27,13 +28,10 @@
           <h3 class="title">服务中心</h3>
           <ul class="clearfix">
             <li>
-              <a href="/" target="_blank">残友互助社区</a>
+              <router-link to="/feedback">问题反馈</router-link>
             </li>
             <li>
-              <a href="/" target="_blank">问题反馈</a>
-            </li>
-            <li>
-              <a href="/" target="_blank">帮助中心</a>
+              <a href="javascript:;" target="_blank" class="close">帮助中心</a>
             </li>
           </ul>
         </div>
@@ -62,6 +60,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.close{ // 暂时关闭的链接
+  color: #999 !important;
+  cursor: text;
+}
 footer{
   background-color: #303a40;
   height: 300px;

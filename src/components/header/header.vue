@@ -12,31 +12,31 @@
             <router-link to="/" exact>首页</router-link>
           </li>
           <li>
-            <router-link to="/fulltime" class="close">全职</router-link>
+            <a href="javascript:;" class="close">全职</a>
           </li>
           <li>
-            <router-link to="/parttime" class="close">兼职</router-link>
+            <a href="javascript:;" class="close">兼职</a>
           </li>
           <li>
-            <router-link to="/jobfair" class="close">招聘会</router-link>
+            <a href="javascript:;" class="close">招聘会</a>
           </li>
           <li>
             <router-link to="/community">社区</router-link>
           </li>
         </ul>
         <ul class="login clearfix">
-          <li v-if="login">
+          <li v-if="logOut">
             <router-link to="/login">登录</router-link>
           </li>
-          <li v-if="login">
+          <li v-if="logOut">
             <router-link to="/register">
               <i class="beforeL">|</i> 注册 <i class="afterL">|</i>
             </router-link>
           </li>
           <li v-else class="photo">
-            <el-dropdown @command="handleCommand" placement="top">
+            <el-dropdown @command="handleCommand" placement="bottom">
               <span class="el-dropdown-link">
-                 <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1116454900,3735379103&fm=27&gp=0.jpg">
+                 <img :src="portrait">
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="a">个人信息</el-dropdown-item>
@@ -66,32 +66,51 @@ export default {
   name: 'holder',
   data () {
     return {
-      login: true
+      logOut: !localStorage.getItem('login'),
+      portrait: '' // 登录头像
     }
+  },
+  created () {
+    this.getPortrait()
   },
   methods: {
     handleCommand (command) {
       if (command === 'a') {
         this.$router.push({name: 'createResume'})
       }
+      if (command === 'f') {
+        localStorage.removeItem('login')
+        this.logOut = true
+        this.$router.push({name: 'login'})
+      }
+    },
+    getPortrait () {
+      // 登录获取头像
+      if (localStorage.getItem('login') === 'true') {
+        this.portrait = 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3303741086,3211617265&fm=26&gp=0.jpg'
+      }
     }
   }
 }
 </script>
 <style lang="less" scoped>
+// elementUI样式覆盖
 .el-dropdown-menu{
   text-align: center;
   letter-spacing: 2px;
   margin: 1px 0;
 }
+@color: #f46d43;  // 声明变量（颜色）
+// 激活路由的样式
 .active{
-  border-bottom: 2px solid #f46d43;
+  border-bottom: 2px solid @color;
   font-weight: 600;
-  color: #f46d43 !important;
+  color: @color !important;
   i{
     color: #333;
   }
 }
+// 头部样式
 header{
   height: 50px;
   .header{
@@ -101,7 +120,6 @@ header{
       width: 190px;
       height: 50px;
       float: left;
-      background-color: blue;
       background: url('../../../src/assets/images/logo1.png') no-repeat 0 7px;
       a{
         cursor: default;
@@ -129,18 +147,23 @@ header{
             color:#333;
           }
           :hover{
-            border-bottom: 2px solid #f46d43;
+            border-bottom: 2px solid @color;
             font-weight: 600;
-            color: #f46d43;
+            color: @color;
           }
-          .close{
+          .close{ // 暂时关闭的链接的样式
             color: #999;
+            cursor: text;
+          }
+          .close:hover{ // 暂时关闭的链接的样式
+            font-weight: normal;
+            border: none;
           }
         }
       }
       .login{
         float:right;
-        margin-right: 20px;
+        /* margin-right: 20px; */
         font-size: 14px;
         li{
           float:left;
@@ -167,9 +190,9 @@ header{
             }
           }
           a:hover{
-            border-bottom: 2px solid #f46d43;
-            font-weight: 600;
-            color: #f46d43;
+            /* border-bottom: 2px solid @color;
+            font-weight: 600; */
+            color: @color;
             i{
               color: #333;
             }
@@ -182,11 +205,14 @@ header{
           border-radius: 20px;
           background-color: #fff;
           position: relative;
-          img{
-            width: 40px;
-            height: 40px;
-            border-radius: 20px;
-            /* background: url('../../../src/assets/images/hero.png') center center / 40px 40px; */
+          .el-dropdown-link{
+            display: block;
+            img{
+              width: 40px;
+              height: 40px;
+              border-radius: 20px;
+              /* background: url('../../../src/assets/images/hero.png') center center / 40px 40px; */
+            }
           }
         }
       }

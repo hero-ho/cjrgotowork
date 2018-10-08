@@ -1,0 +1,160 @@
+{
+  "status": 0,
+  "data": {
+    "pageNum": 1,
+    "pageSize": 10,
+    "size": 2,
+    "orderBy": null,
+    "startRow": 1,
+    "endRow": 2,
+    "total": 14,
+    "pages": 1,
+    "list": [{
+        "id": 1,
+        "title": "资深高级动画设计师",
+        "money": "2000-5000",
+        "create_time": 888888888888,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      },
+      {
+        "id": 2,
+        "title": "资深高级程序员",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      },
+      {
+        "id": 3,
+        "title": "快递员",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "上海",
+        "jobRecruiterName": "哔哩哔哩",
+        "demandExperience": "无"
+      },
+      {
+        "id": 4,
+        "title": "资深前端",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      },
+      {
+        "id": 5,
+        "title": "初级程序员",
+        "money": "4000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      },
+      {
+        "id": 6,
+        "title": "初级前端",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      },
+      {
+        "id": 7,
+        "title": "初级IOS开发",
+        "money": "4000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      },
+      {
+        "id": 8,
+        "title": "资深高级动画设计师",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      }, {
+        "id": 9,
+        "title": "资深高级程序员",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      }, {
+        "id": 10,
+        "title": "快递员",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "上海",
+        "jobRecruiterName": "哔哩哔哩",
+        "demandExperience": "无"
+      }, {
+        "id": 11,
+        "title": "资深前端",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      }, {
+        "id": 12,
+        "title": "初级程序员",
+        "money": "4000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      }, {
+        "id": 13,
+        "title": "初级前端",
+        "money": "2000-5000",
+        "create_time": 123548556,
+        "welfare": "",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      }, {
+        "id": 14,
+        "title": "初级IOS开发",
+        "money": "4000-5000",
+        "create_time": 123548556,
+        "welfare": "五险一金",
+        "jobCityName": "北京",
+        "jobRecruiterName": "百度",
+        "demandExperience": "无"
+      }
+    ],
+    "firstPage": 1,
+    "prePage": 0,
+    "nextPage": 0,
+    "lastPage": 1,
+    "isFirstPage": true,
+    "isLastPage": true,
+    "hasPreviousPage": false,
+    "hasNextPage": false,
+    "navigatePages": 8,
+    "navigatepageNums": [
+      1
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+/* elementUI 样式覆盖 */
+
+/* 输入框的覆盖 */
+.username .el-input__inner,
+.password .el-input__inner{
+  padding: 0 0 0 42px;
+}
+
+/* 输入错误时，报错信息显示的位置 */
+.content .form .el-form-item__error {
+    top: 84%;
+    left: 50px;
+}
+
+/* 按钮的覆盖 */
+.enter.el-button--success {
+    background-color: #ff9500;
+    border-color: #ff9500;
+}
+.enter.el-button--success:hover, .el-button--success:focus {
+    background-color: rgba(255, 149, 0, 0.8);
+    border-color:rgba(255, 149, 0, 0.8);
+}
+.enter.el-button--success:active {
+    background-color: #ff9500;
+    border-color: #ff9500;
+}
