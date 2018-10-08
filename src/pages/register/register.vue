@@ -25,10 +25,11 @@
 </template>
 
 <script>
+import { signUp } from '@/axios/index'
 import Vue from 'vue'
 import foot from '@/components/footer/footer'
 import logo from '@/components/logo/logo'
-import { Form, FormItem, Input, Button } from 'element-ui'
+import { Form, FormItem, Input, Button, Message } from 'element-ui'
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
@@ -42,7 +43,7 @@ export default {
   name: 'register',
   data () {
     var checkEmail = (rule, value, callback) => {
-      var reg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/
+      var reg = /^[a-zA-Z0-9_-]{1,20}@([a-zA-Z0-9]+\.)+[A-Za-z\d]{2,5}$/
       if (value === '') {
         callback(new Error('请输入邮箱'))
       } else if (!reg.test(value)) {
@@ -63,7 +64,7 @@ export default {
         callback(new Error('请输入6-20位含数字及字母的密码'))
       } else {
         if (this.formData.checkPass !== '') {
-          this.$refs.formData.validateField('checkCodePass')
+          this.$refs.formData.validateField('checkPass')
         }
         callback()
       }
@@ -95,25 +96,46 @@ export default {
     }
   },
   methods: {
-    gotoRegister (formData) {
+    async gotoRegister (formData) {
       this.$refs['formData'].validate(async (valid) => {
         if (valid) {
-          const that = this
-          console.log(that.formData.email)
-          console.log(that.formData.pass)
-          console.log(that.formData.checkPass)
-          // 发送注册数据至后台，若注册成功自动跳转至个人信息完善页面
-          // let res = sendRegistorData({})
-          // if (res.status === '') {
-          //   this.$message({
-          //     type: 'success',
-          //     message: '注册成功'
-          //   })
-          // session.setUser(res.data)
-          // this.$router.push('/createresume')
-          // }
+          console.log(this.formData.email)
+          console.log(this.formData.pass)
+          try {
+            const signUpInfo = {
+              username: '',
+              password: this.formData.pass,
+              email: this.formData.email
+            }
+            // const signInInfo = {email: that.formData.email, password: that.formData.pass}
+            const res = await signUp({params: signUpInfo})
+            const data = res.data
+            if (data.status === 0) {
+              Message({
+                type: 'success',
+                message: '注册成功'
+              })
+              // 发送登录请求
+              this.$router.push('/selfcenter')
+              // this.$router.push('/createresume')
+            } else if (data.status === 1) {
+              Message({
+                type: 'error',
+                message: '该邮箱已注册'
+              })
+            }
+          } catch (e) {
+            console.log(e)
+            Message({
+              type: 'error',
+              message: e
+            })
+          }
         } else {
-          console.log('not validate yet!')
+          Message({
+            type: 'error',
+            message: '请按要求填写注册信息'
+          })
         }
       })
     }

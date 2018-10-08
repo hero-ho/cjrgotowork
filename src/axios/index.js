@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8080' // 统一设置域名，方便日后维护。
+axios.defaults.baseURL = 'http://180.76.156.155:8080/cjrjob' // 统一设置域名，方便日后维护。
 
 /*
 为了方便日后的维护，axios相关的内容统一封装到这里，不要让axios的方法散落在各个页面，统一都在这里 日后好维护。将axios的方法封装在这里，哪里要用，就在哪里按需导入即可。如：
@@ -15,3 +15,4 @@ export const checkUser = (param) => {
 使用方法： checkUser( { 参数 } ).then(回调函数)
 
  */
+export const signUp = async param => axios.get('/user/register.do', param)
