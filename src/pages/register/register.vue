@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { signUp } from '@/axios/index'
+import { signUp, checkUser } from '@/axios/index'
 import Vue from 'vue'
 import foot from '@/components/footer/footer'
 import logo from '@/components/logo/logo'
@@ -42,6 +42,7 @@ export default {
   },
   name: 'register',
   data () {
+    // 表单验证规则
     var checkEmail = (rule, value, callback) => {
       var reg = /^[a-zA-Z0-9_-]{1,20}@([a-zA-Z0-9]+\.)+[A-Za-z\d]{2,5}$/
       if (value === '') {
@@ -51,9 +52,6 @@ export default {
       } else {
         callback()
       }
-      // if ('接口返回数据') {
-      //   callback(new Error('该邮箱已被注册'))
-      // }
     }
     var codePass = (rule, value, callback) => {
       if (value === '') {
@@ -96,26 +94,36 @@ export default {
     }
   },
   methods: {
+    // 注册功能
     async gotoRegister (formData) {
       this.$refs['formData'].validate(async (valid) => {
         if (valid) {
           console.log(this.formData.email)
           console.log(this.formData.pass)
           try {
+            // 获取注册及登录接口所需信息
             const signUpInfo = {
               username: '',
               password: this.formData.pass,
               email: this.formData.email
             }
-            // const signInInfo = {email: that.formData.email, password: that.formData.pass}
+            const signInInfo = {
+              email: this.formData.email, 
+              password: this.formData.pass
+            }
+            // 请求注册接口
             const res = await signUp({params: signUpInfo})
             const data = res.data
+            // 注册成功后请求登录接口
             if (data.status === 0) {
               Message({
                 type: 'success',
                 message: '注册成功'
               })
               // 发送登录请求
+              const ress = await checkUser({params: signInInfo})
+              console.log(ress.data)
+              localStorage.setItem('login', 'true')
               this.$router.push('/selfcenter')
               // this.$router.push('/createresume')
             } else if (data.status === 1) {

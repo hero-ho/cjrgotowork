@@ -17,9 +17,7 @@ export const checkUser = (param) => {
 使用方法： checkUser( { 参数 } ).then(回调函数)
 
  */
-
 export const signUp = async param => axios.get('http://180.76.156.155:8080/cjrjob/user/register.do', param)
-
 export const checkUser = (param) => {
   return axios.get('http://180.76.156.155:8080/cjrjob/user/login.do', param).then(res => res.data)
 }
