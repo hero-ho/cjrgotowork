@@ -8,8 +8,8 @@
 
         <el-form :model="form" :rules="rules" ref="form" class="demo-ruleForm form">
           <h1>登录</h1>
-          <el-form-item prop="username">
-            <el-input v-model.trim="form.username" @keyup.enter.native="submitForm('form')" class="username" placeholder="请输入手机号码 / 邮箱 / 用户名" type="text"></el-input>
+          <el-form-item prop="email">
+            <el-input v-model.trim="form.email" @keyup.enter.native="submitForm('form')" class="username" placeholder="请输入手机号码 / 邮箱 / 用户名" type="text"></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input v-model.trim="form.password" @keyup.enter.native="submitForm('form')" class="password" placeholder="请输入密码" type="password"></el-input>
@@ -38,7 +38,6 @@ import Vue from 'vue'
 import foot from '@/components/footer/footer' // 脚部
 import logo from '@/components/logo/logo' // logo组件
 import { checkUser } from '@/axios' // 请求数据的方法
-import cookie from 'js-cookie' // 引入cookie
 import { Form, FormItem, Input, Button, Message } from 'element-ui'
 Vue.use(Form)
 Vue.use(FormItem)
@@ -52,20 +51,18 @@ export default {
     logo
   },
   created () {
-    if (cookie.get('JSESSIONID')) {
-      this.$router.push({path: '/'})
-    }
+    this.checkLogin()
   },
   data () {
     /* let usernameRules = rules.usernameRules 导入表单验证的方法 */
     return {
       form: {
-        username: '',
+        email: '',
         password: ''
       },
       disabled: false, // 按钮是否可以点击
       rules: {
-        username: [
+        email: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 6, max: 30, message: '长度应在 6 到 30 个字符', trigger: 'blur' }
           /* { validator: usernameRules, trigger: 'change' } 自定义表单验证规则 */
@@ -84,9 +81,10 @@ export default {
         if (valid) { // 表单验证成功
           this.disabled = true // 禁用按钮
           // 请求登录
-          checkUser(this.form).then(res => {
+          checkUser({params: this.form}).then(res => {
+            console.log(res)
             if (res.status === 0) { // 登录成功
-              cookie.set('JSESSIONID', res.data.JSESSIONID)
+              localStorage.setItem('login', 'true')
               this.$router.push({ path: '/' })
               this.disabled = false // 开放按钮
             } else { // 登录失败
@@ -103,6 +101,12 @@ export default {
           return false
         }
       })
+    },
+    checkLogin () {
+      // 如果已经登录过就跳到首页
+      if (localStorage.getItem('login') === 'true') {
+        this.$router.push({path: '/'})
+      }
     }
   }
 }

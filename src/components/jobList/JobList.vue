@@ -64,7 +64,6 @@ export default {
       this.jobList = res.data
       console.log(this.jobList)
     })
-    
     this.province = province.map(e => {
       return {
         value: e.code,

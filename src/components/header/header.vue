@@ -58,7 +58,6 @@
 </template>
 <script>
 import Vue from 'vue'
-import cookie from 'js-cookie'
 import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui'
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)
@@ -67,12 +66,12 @@ export default {
   name: 'holder',
   data () {
     return {
-      logOut: !cookie.get('JSESSIONID'),
-      portrait: ''
+      logOut: !localStorage.getItem('login'),
+      portrait: '' // 登录头像
     }
   },
   created () {
-    this.portrait = 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3303741086,3211617265&fm=26&gp=0.jpg'
+    this.getPortrait()
   },
   methods: {
     handleCommand (command) {
@@ -80,9 +79,15 @@ export default {
         this.$router.push({name: 'createResume'})
       }
       if (command === 'f') {
-        cookie.remove('JSESSIONID')
+        localStorage.removeItem('login')
         this.logOut = true
         this.$router.push({name: 'login'})
+      }
+    },
+    getPortrait () {
+      // 登录获取头像
+      if (localStorage.getItem('login') === 'true') {
+        this.portrait = 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3303741086,3211617265&fm=26&gp=0.jpg'
       }
     }
   }
