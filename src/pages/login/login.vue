@@ -1,6 +1,6 @@
 <template>
   <div>
-   <!--  <holder></holder> -->
+    <!--  <holder></holder> -->
     <div class="container">
       <div class="content">
 
@@ -15,7 +15,7 @@
             <el-input v-model.trim="form.password" @keyup.enter.native="submitForm('form')" class="password" placeholder="请输入密码" type="password"></el-input>
           </el-form-item>
           <div class="forget">
-             <router-link to="/findpw">忘记密码？</router-link>
+            <router-link to="/findpw">忘记密码？</router-link>
           </div>
           <el-form-item>
             <el-button :disabled="disabled" @click="submitForm('form')" class="enter" type="success">登录</el-button>
@@ -113,41 +113,43 @@ export default {
 </script>
 <style lang="less" scoped>
 @color: #ff6000;
-.container::before{ // 大背景遮罩
+.container::before {
+  // 大背景遮罩
   content: '';
   width: 100%;
   min-width: 1200px;
-  height:  450px;
+  height: 450px;
   position: absolute;
   display: block;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.5);
 }
-.container{
+.container {
   width: 100%;
   min-width: 1200px;
   height: 450px;
   position: relative;
-  background: url('../../../src/assets/images/banner1.jpg') no-repeat center center / 100% 100%;
-  .content{
+  background: url('../../../src/assets/images/banner1.jpg') no-repeat center
+    center / 100% 100%;
+  .content {
     width: 100%;
     min-width: 1200px;
     margin: 0 auto;
     position: absolute;
     z-index: 2;
-    .logo{
+    .logo {
       margin: 30px auto 10px;
     }
-    .form{
+    .form {
       width: 500px;
       height: 282px;
       border-top: 10px solid @color;
       margin: 0 auto;
       background-color: #fff;
       text-align: center;
-      border-radius:0 0 6px 6px;
+      border-radius: 0 0 6px 6px;
       position: relative;
-      h1{
+      h1 {
         text-align: center;
         font-size: 26px;
         font-weight: 600;
@@ -156,12 +158,12 @@ export default {
         margin: 15px 0;
       }
       .username,
-      .password{
+      .password {
         width: 400px;
         height: 50px;
       }
       .username::before,
-      .password::before{
+      .password::before {
         content: '';
         position: absolute;
         width: 20px;
@@ -169,25 +171,25 @@ export default {
         top: 8px;
         left: 10px;
       }
-      .username::before{
+      .username::before {
         background: url('../../assets/images/sprite.png') 46px -3px;
       }
-      .password::before{
+      .password::before {
         background: url('../../assets/images/sprite.png') 21px -3px;
       }
-      .forget{
+      .forget {
         position: absolute;
         top: 182px;
         right: 58px;
         font-size: 14px;
-        a{
+        a {
           color: #3ca6fc;
         }
-        a:hover{
+        a:hover {
           color: @color;
         }
       }
-      .enter{
+      .enter {
         width: 400px;
         height: 50px;
         color: #fff;
@@ -195,12 +197,12 @@ export default {
         margin-top: 14px;
       }
     }
-    .register{
+    .register {
       text-align: center;
       font-size: 14px;
       color: #333;
       margin-top: 12px;
-      a{
+      a {
         color: @color;
       }
     }

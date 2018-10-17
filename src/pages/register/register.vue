@@ -108,7 +108,7 @@ export default {
               email: this.formData.email
             }
             const signInInfo = {
-              email: this.formData.email, 
+              email: this.formData.email,
               password: this.formData.pass
             }
             // 请求注册接口
